@@ -116,7 +116,7 @@ class Mean():
         It then returns the updated mean.
 
         Args:
-            _list: The list of values to be added to the mean.
+            _list (list | tuple): The list of values to be added to the mean.
 
         Returns:
             The updated mean (float or complex or None).
