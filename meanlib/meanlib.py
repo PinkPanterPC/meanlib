@@ -61,7 +61,7 @@ class SimpleMean():
         If the count is 0, it returns None.
 
         Returns:
-            The current mean (float or complex or None), or None if the count is 0.
+            The current mean (float or complex), or None if the count is 0.
         """
         return self._sum / self.count if self.count > 0 else None
     
@@ -139,6 +139,6 @@ class Mean():
         If the array is empty, it returns None.
 
         Returns:
-            The current mean (float or complex or None), or None if the array is empty.
+            The current mean (float or complex), or None if the array is empty.
         """
         return sum(self.array) / len(self.array) if len(self.array) > 0 else None
