@@ -66,24 +66,24 @@ class SimpleMean():
         return self._sum / self.count if self.count > 0 else None
     
 class Mean():
-    def __init__(self, max_num=None):
+    def __init__(self, max_size=None):
         """
         Initializes a Mean object.
 
         This function initializes the array attribute to an empty list.
-        It also initializes the max_num attribute to the given value, or None if no value is given.
+        It also initializes the max_size attribute to the given value, or None if no value is given.
 
         Args:
-            max_num (int | str, optional): The maximum number of values to store in the array. If None, there is no limit.
+            max_size (int | str, optional): The maximum number of values to store in the array. If None, there is no limit.
 
         Raises:
-            ValueError: If the max_num is not an integer or a string of an integer.
+            ValueError: If the max_size is not an integer or a string of an integer.
         """
         self.array = []
-        if max_num is not None:
-            self.max_num = int(max_num)
+        if max_size is not None:
+            self.max_size = int(max_size)
         else:
-            self.max_num = None
+            self.max_size = None
     
     def update(self, number: int | float | complex):
         """
@@ -103,7 +103,7 @@ class Mean():
             TypeError: If the input number is not an int, float, or complex.
         """
         self.array.append(number)
-        if self.max_num and len(self.array) > self.max_num:
+        if self.max_size and len(self.array) > self.max_size:
             self.array.pop(0)
         return self.get_mean()
     
@@ -127,8 +127,8 @@ class Mean():
         """
         if _list:
             self.array.extend(_list)
-            if self.max_num and len(self.array) > self.max_num:
-                self.array = self.array[-self.max_num:]
+            if self.max_size and len(self.array) > self.max_size:
+                self.array = self.array[-self.max_size:]
         return self.get_mean()
 
     def get_mean(self):

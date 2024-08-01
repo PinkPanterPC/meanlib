@@ -5,5 +5,5 @@ from .meanlib import *
 __project__ = 'meanlib'
 __version__ = '1.0.0'
 __date__ = "2024-08-01"
-__author__ = ['Tobia Petrolini']
+__authors__ = ['Tobia Petrolini']
 __license__ = 'MIT License'
