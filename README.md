@@ -77,7 +77,7 @@ Calculates the weighted mean of a list of values.
 
 - `TypeError`: If values or weights are not list or array-like.
 - `ValueError`: If values and weights do not have the same length.
-- `ZeroDivisionError`: If the total of weights is zero.
+- `ZeroDivisionError`: If the total of values is zero.
 
 ### `class SimpleMean`
 
