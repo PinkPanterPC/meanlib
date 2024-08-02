@@ -32,7 +32,7 @@ print(simple_mean.get_mean())  # Output: 7.5
 from meanlib import Mean
 
 # Initialize the Mean object with a maximum of 3 values
-mean = Mean(max_num=3)
+mean = Mean(max_size=3)
 
 # Update the mean with new values
 mean.update(10)
@@ -116,17 +116,17 @@ Returns the current mean.
 
 A class for calculating a rolling mean with an optional limit on the number of values stored.
 
-#### `Mean.__init__(max_num=None)`
+#### `Mean.__init__(max_size=None)`
 
 Initializes a `Mean` object.
 
 #### Parameters:
 
-- `max_num` (int or str, optional): The maximum number of values to store in the array. If `None`, there is no limit.
+- `max_size` (int or str, optional): The maximum number of values to store in the array. If `None`, there is no limit.
 
 #### Raises:
 
-- `ValueError`: If `max_num` is not an integer or a string of an integer.
+- `ValueError`: If `max_size` is not an integer or a string of an integer.
 
 #### `Mean.update(number)`
 
@@ -150,7 +150,7 @@ Updates the mean with a list of values, maintaining the array size within the ma
 
 #### Parameters:
 
-- `_list_` (list or tuple): The new value to be added to the mean.
+- `_list` (list or tuple): The new value to be added to the mean.
 
 #### Returns:
 
