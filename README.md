@@ -56,7 +56,7 @@ weights = [1, 2, 1, 1]
 
 # Calculate the weighted mean
 wm = weighted_mean(values, weights)
-print(wm)  # Output: 2.5
+print(wm)  # Output: 2.4
 ```
 ## API Reference
 
