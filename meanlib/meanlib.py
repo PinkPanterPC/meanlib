@@ -1,4 +1,4 @@
-__version__ = '1.1.0'
+__version__ = '1.2.0'
 
 def mean(values: list | tuple):
     """
@@ -19,7 +19,7 @@ def mean(values: list | tuple):
     try:
         return sum(values)/len(values) if len(values) > 0 else None
     except TypeError:
-        raise TypeError('There are values ​​of incompatible types in `values` or `weights` or `values` is not of a compatible type')
+        raise TypeError('There are values ​​of incompatible types in `values`, or `values` is not of a compatible type')
     
 def weighted_mean(values: list | tuple, weights: list | tuple):
     """
@@ -46,7 +46,7 @@ def weighted_mean(values: list | tuple, weights: list | tuple):
     except ValueError:
         raise ValueError('The `values` array and the `weights` array must have the same length')
     except TypeError:
-        raise TypeError('There are values ​​of incompatible types in `values` or `weights` or `values` is not of a compatible type')
+        raise TypeError('There are values ​​of incompatible types in `values` or `weights`, or `values` is not of a compatible type')
     
 
 class SimpleMean():
@@ -59,7 +59,7 @@ class SimpleMean():
         self._sum = 0
         self.count = 0 
 
-    def update(self, number: int | float | complex):
+    def update(self, value: int | float | complex):
         """
         Updates the mean with a new value.
 
@@ -67,17 +67,21 @@ class SimpleMean():
         It then returns the updated mean.
 
         Args:
-            number (int | float | complex): The new value to be added to the mean.
+            value (int | float | complex): The new value to be added to the mean.
 
         Returns:
             The updated mean (float or complex or None).
 
         Raises:
-            TypeError: If the value is not of a compatible type.
+            TypeError: If `value` is not of a compatible type.
         """
-        self._sum += number
-        self.count += 1
-        return self.get_mean()
+        try:
+            self._sum += value
+            self.count += 1
+            return self.get_mean()
+        except TypeError:
+            raise TypeError('`Value` is not of a compatible type')
+            
 
     def get_mean(self):
         """
@@ -103,7 +107,7 @@ class Mean():
             max_size (int | str, optional): The maximum number of values to store in the array. If None, there is no limit.
 
         Raises:
-            ValueError: If the max_size is not an integer or a string of an integer.
+            ValueError: If the `max_size` is not an integer or a string of an integer.
         """
         self.array = []
         if max_size is not None:
@@ -111,7 +115,7 @@ class Mean():
         else:
             self.max_size = None
     
-    def update(self, number: int | float | complex):
+    def update(self, value: int | float | complex):
         """
         Updates the mean with a new value.
 
@@ -120,20 +124,25 @@ class Mean():
         It then returns the updated mean.
 
         Args:
-            number (int | float | complex): The new value to be added to the mean.
+            value (int | float | complex): The new value to be added to the mean.
 
         Returns:
             The updated mean (float or complex or None).
 
         Raises:
-            TypeError: If the input number is not an int, float, or complex.
+            TypeError: If `value` is not of a compatible type.
         """
-        self.array.append(number)
-        if self.max_size and len(self.array) > self.max_size:
-            self.array.pop(0)
-        return self.get_mean()
+        old_list = self.array
+        try:
+            self.array.append(number)
+            if self.max_size and len(self.array) > self.max_size:
+                self.array.pop(0)
+            return self.get_mean()
+        except TypeError:
+            self.array = old_list
+            raise TypeError('`Value` is not of a compatible type')
     
-    def update_list(self, _list: list | tuple):
+    def update_list(self, values: list | tuple):
         """
         Updates the mean with a list of values.
 
@@ -142,20 +151,25 @@ class Mean():
         It then returns the updated mean.
 
         Args:
-            _list (list | tuple): The list of values to be added to the mean.
+            values (list | tuple): The list of values to be added to the mean.
 
         Returns:
             The updated mean (float or complex or None).
         
         Raises:
-            TypeError: If an element in the _list is not of the correct type.
-            TypeError: If the _list is not a list or tuple.
+            TypeError: If `values` is not a list or tuple.
+            TypeError: If an element in `values` is not of the correct type.
         """
-        if _list:
-            self.array.extend(_list)
-            if self.max_size and len(self.array) > self.max_size:
-                self.array = self.array[-self.max_size:]
-        return self.get_mean()
+        old_list = self.array
+        try:
+            if values:
+                self.array.extend(values)
+                if self.max_size and len(self.array) > self.max_size:
+                    self.array = self.array[-self.max_size:]
+            return self.get_mean()
+        except TypeError:
+            self.array = old_list
+            raise TypeError('There are values ​​of incompatible types in `values`, or `values` is not of a compatible type')
 
     def get_mean(self):
         """
