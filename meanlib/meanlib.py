@@ -1,27 +1,53 @@
-import numpy as np
+__version__ = '1.1.0'
 
-def weighted_mean(values, weights):
+def mean(values: list | tuple):
+    """
+    Calculates the arithmetic mean of a list of values.
+
+    This function computes the arithmetic mean, which is the sum of the values divided by the number of values.
+
+    Args:
+        values (list | tuple): A list or tuple containing the numerical values for which the mean is to be calculated.
+
+    Returns:
+        The calculated arithmetic mean (float or complex) or None if the input is empty.
+
+    Raises:
+        TypeError: If `values` is not of a compatible type.
+        TypeError: If an element in `values` is not of the correct type.
+    """
+    try:
+        return sum(values)/len(values) if len(values) > 0 else None
+    except TypeError:
+        raise TypeError('There are values ​​of incompatible types in `values` or `weights` or `values` is not of a compatible type')
+    
+def weighted_mean(values: list | tuple, weights: list | tuple):
     """
     Calculates the weighted mean of a list of values.
 
-    This function converts the input lists of values and weights into NumPy arrays and then computes the weighted mean.
+    This function computes the weighted mean.
     The weighted mean is the sum of the values, each multiplied by their corresponding weight, divided by the total sum of the weights.
 
     Args:
-        values: A list or array-like structure containing the values for which the weighted mean is to be calculated.
-        weights: A list or array-like structure containing the weights associated with each value.
+        values (list | tuple): A list containing the values for which the weighted mean is to be calculated.
+        weights (list | tuple): A list structure containing the weights associated with each value.
 
     Returns:
         The calculated weighted mean (float or complex).
 
     Raises:
-        TypeError: If `values` or `weights` are not list or array-like.
+        TypeError: If `values` or `weights` are not of a compatible type.
+        TypeError: If an element in `values` or `weights` is not of the correct type.
         ValueError: If `values` and `weights` do not have the same length.
-        ZeroDivisionError: If the total of `values` is zero.
     """
-    values = np.asarray(values)
-    weights = np.asarray(weights)
-    return np.average(values, weights=weights)
+    try:
+        total_weight = sum(weights)
+        return sum(v * w for v, w in zip(values, weights)) / total_weight if len(values) > 0 else None
+    except ValueError:
+        raise ValueError('The `values` array and the `weights` array must have the same length')
+    except TypeError:
+        raise TypeError('There are values ​​of incompatible types in `values` or `weights` or `values` is not of a compatible type')
+    
 
 class SimpleMean():
     def __init__(self):
