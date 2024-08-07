@@ -14,7 +14,6 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-        "Operating System :: Microsoft :: Windows"
     ],
     python_requires='>=3.7',
     include_package_data=True,
