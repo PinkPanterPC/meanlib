@@ -9,9 +9,6 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/PinkPantherPC/meanlib.git",
     packages=find_packages(),
-    install_requires=[
-        "numpy>=1.15.0",
-    ],
     license="MIT",
     classifiers=[
         "Programming Language :: Python :: 3",
