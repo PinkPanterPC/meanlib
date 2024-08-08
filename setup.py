@@ -24,5 +24,5 @@ setup(
     },
     keywords=['mean', 'average', 'weighted mean', 'weighted average', 'rolling mean' 'rolling average',
               'geometric mean', 'harmonic mean', 'rolling geometric mean', 'rolling harmonic mean',
-              'geometri average', 'harmonic average', 'rolling geometric average', 'rolling harmonic average']
+              'geometric average', 'harmonic average', 'rolling geometric average', 'rolling harmonic average']
 )
